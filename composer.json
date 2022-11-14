@@ -1,0 +1,38 @@
+{
+    "name": "highsidelabs/amazon-business-api",
+    "version": "1.0.0",
+    "description": "PHP client for Amazon's Business API",
+    "keywords": [
+        "api",
+        "amazon-business-api",
+        "amazon",
+        "ecommerce",
+        "ab-api",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Highside Labs",
+            "homepage": "https://highsidelabs.co"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^6.0|^7.0",
+        "aws/aws-sdk-php": "^3.185"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.4"
+    },
+    "autoload": {
+        "psr-4": { "AmazonBusinessApi\\" : "lib/" }
+    }
+}
