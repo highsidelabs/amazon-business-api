@@ -27,9 +27,9 @@
 
 namespace AmazonBusinessApi\Model\ProductSearchV20200826;
 use AmazonBusinessApi\Model\BaseModel;
-use \AmazonBusinessApi\Model\ModelInterface;
-use \AmazonBusinessApi\ObjectSerializer;
-use \ArrayAccess;
+use AmazonBusinessApi\Model\ModelInterface;
+use AmazonBusinessApi\ObjectSerializer;
+use ArrayAccess;
 
 /**
  * CustomerReviewsSummary Class Doc Comment

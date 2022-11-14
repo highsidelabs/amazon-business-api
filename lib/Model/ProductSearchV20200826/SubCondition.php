@@ -27,9 +27,9 @@
 
 namespace AmazonBusinessApi\Model\ProductSearchV20200826;
 
-use \AmazonBusinessApi\Model\ModelInterface;
-use \AmazonBusinessApi\ObjectSerializer;
-use \ArrayAccess;
+use AmazonBusinessApi\Model\ModelInterface;
+use AmazonBusinessApi\ObjectSerializer;
+use ArrayAccess;
 
 /**
  * SubCondition Class Doc Comment

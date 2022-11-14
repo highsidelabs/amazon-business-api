@@ -27,9 +27,9 @@
 
 namespace AmazonBusinessApi\Model\ReportingV20210108;
 use AmazonBusinessApi\Model\BaseModel;
-use \AmazonBusinessApi\Model\ModelInterface;
-use \AmazonBusinessApi\ObjectSerializer;
-use \ArrayAccess;
+use AmazonBusinessApi\Model\ModelInterface;
+use AmazonBusinessApi\ObjectSerializer;
+use ArrayAccess;
 
 /**
  * ErrorList Class Doc Comment
