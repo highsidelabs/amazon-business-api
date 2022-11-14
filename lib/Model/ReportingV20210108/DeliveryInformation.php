@@ -180,11 +180,15 @@ class DeliveryInformation implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function getDeliveryStatusAllowableValues()
     {
-        return [
+        $baseVals = [
             self::DELIVERY_STATUS_DELIVERED,
             self::DELIVERY_STATUS_NOT_DELIVERED,
             self::DELIVERY_STATUS_NOT_AVAILABLE,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -221,7 +225,10 @@ class DeliveryInformation implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = "'delivery_status' can't be null";
         }
         $allowedValues = $this->getDeliveryStatusAllowableValues();
-        if (!is_null($this->container['delivery_status']) && !in_array($this->container['delivery_status'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['delivery_status']) &&
+            !in_array(strtoupper($this->container['delivery_status']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'delivery_status', must be one of '%s'",
                 $this->container['delivery_status'],
@@ -287,7 +294,7 @@ class DeliveryInformation implements ModelInterface, ArrayAccess, \JsonSerializa
     public function setDeliveryStatus($delivery_status)
     {
         $allowedValues = $this->getDeliveryStatusAllowableValues();
-        if (!in_array($delivery_status, $allowedValues, true)) {
+        if (!in_array(strtoupper($delivery_status), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'delivery_status', must be one of '%s'",

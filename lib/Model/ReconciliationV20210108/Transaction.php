@@ -250,11 +250,15 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable, \It
      */
     public function getTransactionTypeAllowableValues()
     {
-        return [
+        $baseVals = [
             self::TRANSACTION_TYPE_CHARGE,
             self::TRANSACTION_TYPE_REFUND,
             self::TRANSACTION_TYPE_OVERREFUND,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -299,7 +303,10 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable, \It
     {
         $invalidProperties = [];
         $allowedValues = $this->getTransactionTypeAllowableValues();
-        if (!is_null($this->container['transaction_type']) && !in_array($this->container['transaction_type'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['transaction_type']) &&
+            !in_array(strtoupper($this->container['transaction_type']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'transaction_type', must be one of '%s'",
                 $this->container['transaction_type'],
@@ -411,7 +418,7 @@ class Transaction implements ModelInterface, ArrayAccess, \JsonSerializable, \It
     public function setTransactionType($transaction_type)
     {
         $allowedValues = $this->getTransactionTypeAllowableValues();
-        if (!is_null($transaction_type) && !in_array($transaction_type, $allowedValues, true)) {
+        if (!is_null($transaction_type) &&!in_array(strtoupper($transaction_type), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'transaction_type', must be one of '%s'",

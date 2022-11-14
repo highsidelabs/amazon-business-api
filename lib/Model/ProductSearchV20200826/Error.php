@@ -188,7 +188,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
      */
     public function getCodeAllowableValues()
     {
-        return [
+        $baseVals = [
             self::CODE_PRODUCT_NOT_FOUND,
             self::CODE_PAGE_NOT_FOUND,
             self::CODE_INVALID_REQUEST_PARAMETER,
@@ -196,6 +196,10 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             self::CODE_EMAIL_ID_NOT_FOUND,
             self::CODE_UNAUTHORIZED,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -230,7 +234,10 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             $invalidProperties[] = "'code' can't be null";
         }
         $allowedValues = $this->getCodeAllowableValues();
-        if (!is_null($this->container['code']) && !in_array($this->container['code'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['code']) &&
+            !in_array(strtoupper($this->container['code']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'code', must be one of '%s'",
                 $this->container['code'],
@@ -276,7 +283,7 @@ class Error implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
     public function setCode($code)
     {
         $allowedValues = $this->getCodeAllowableValues();
-        if (!in_array($code, $allowedValues, true)) {
+        if (!in_array(strtoupper($code), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'code', must be one of '%s'",

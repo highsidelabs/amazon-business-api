@@ -260,13 +260,17 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
      */
     public function getBuyingGuidanceAllowableValues()
     {
-        return [
+        $baseVals = [
             self::BUYING_GUIDANCE_PREFERRED,
             self::BUYING_GUIDANCE_RESTRICTED,
             self::BUYING_GUIDANCE_BLOCKED,
             self::BUYING_GUIDANCE_NONE,
             self::BUYING_GUIDANCE_UNKNOWN,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
 
@@ -277,11 +281,15 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
      */
     public function getFulfillmentTypeAllowableValues()
     {
-        return [
+        $baseVals = [
             self::FULFILLMENT_TYPE_AMAZON_FULFILLMENT,
             self::FULFILLMENT_TYPE_MERCHANT_FULFILLMENT,
             self::FULFILLMENT_TYPE_OTHER,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
 
@@ -292,7 +300,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
      */
     public function getProductConditionAllowableValues()
     {
-        return [
+        $baseVals = [
             self::PRODUCT_CONDITION__NEW,
             self::PRODUCT_CONDITION_USED,
             self::PRODUCT_CONDITION_COLLECTIBLE,
@@ -300,6 +308,10 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             self::PRODUCT_CONDITION_OTHER,
             self::PRODUCT_CONDITION_UNKNOWN,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -349,7 +361,10 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             $invalidProperties[] = "'buying_guidance' can't be null";
         }
         $allowedValues = $this->getBuyingGuidanceAllowableValues();
-        if (!is_null($this->container['buying_guidance']) && !in_array($this->container['buying_guidance'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['buying_guidance']) &&
+            !in_array(strtoupper($this->container['buying_guidance']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'buying_guidance', must be one of '%s'",
                 $this->container['buying_guidance'],
@@ -364,7 +379,10 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             $invalidProperties[] = "'fulfillment_type' can't be null";
         }
         $allowedValues = $this->getFulfillmentTypeAllowableValues();
-        if (!is_null($this->container['fulfillment_type']) && !in_array($this->container['fulfillment_type'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['fulfillment_type']) &&
+            !in_array(strtoupper($this->container['fulfillment_type']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'fulfillment_type', must be one of '%s'",
                 $this->container['fulfillment_type'],
@@ -388,7 +406,10 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             $invalidProperties[] = "'product_condition' can't be null";
         }
         $allowedValues = $this->getProductConditionAllowableValues();
-        if (!is_null($this->container['product_condition']) && !in_array($this->container['product_condition'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['product_condition']) &&
+            !in_array(strtoupper($this->container['product_condition']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'product_condition', must be one of '%s'",
                 $this->container['product_condition'],
@@ -469,7 +490,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
     public function setBuyingGuidance($buying_guidance)
     {
         $allowedValues = $this->getBuyingGuidanceAllowableValues();
-        if (!in_array($buying_guidance, $allowedValues, true)) {
+        if (!in_array(strtoupper($buying_guidance), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'buying_guidance', must be one of '%s'",
@@ -525,7 +546,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
     public function setFulfillmentType($fulfillment_type)
     {
         $allowedValues = $this->getFulfillmentTypeAllowableValues();
-        if (!in_array($fulfillment_type, $allowedValues, true)) {
+        if (!in_array(strtoupper($fulfillment_type), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'fulfillment_type', must be one of '%s'",
@@ -650,7 +671,7 @@ class Offer implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
     public function setProductCondition($product_condition)
     {
         $allowedValues = $this->getProductConditionAllowableValues();
-        if (!in_array($product_condition, $allowedValues, true)) {
+        if (!in_array(strtoupper($product_condition), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'product_condition', must be one of '%s'",

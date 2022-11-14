@@ -209,7 +209,7 @@ class ProductsByAsinsRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getProductRegionAllowableValues()
     {
-        return [
+        $baseVals = [
             self::PRODUCT_REGION_DE,
             self::PRODUCT_REGION_FR,
             self::PRODUCT_REGION_UK,
@@ -219,6 +219,10 @@ class ProductsByAsinsRequest implements ModelInterface, ArrayAccess, \JsonSerial
             self::PRODUCT_REGION_CA,
             self::PRODUCT_REGION_JP,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
 
@@ -229,10 +233,14 @@ class ProductsByAsinsRequest implements ModelInterface, ArrayAccess, \JsonSerial
      */
     public function getFacetsAllowableValues()
     {
-        return [
+        $baseVals = [
             self::FACETS_OFFERS,
             self::FACETS_IMAGES,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -273,7 +281,10 @@ class ProductsByAsinsRequest implements ModelInterface, ArrayAccess, \JsonSerial
             $invalidProperties[] = "'product_region' can't be null";
         }
         $allowedValues = $this->getProductRegionAllowableValues();
-        if (!is_null($this->container['product_region']) && !in_array($this->container['product_region'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['product_region']) &&
+            !in_array(strtoupper($this->container['product_region']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'product_region', must be one of '%s'",
                 $this->container['product_region'],
@@ -346,7 +357,7 @@ class ProductsByAsinsRequest implements ModelInterface, ArrayAccess, \JsonSerial
     public function setProductRegion($product_region)
     {
         $allowedValues = $this->getProductRegionAllowableValues();
-        if (!in_array($product_region, $allowedValues, true)) {
+        if (!in_array(strtoupper($product_region), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'product_region', must be one of '%s'",

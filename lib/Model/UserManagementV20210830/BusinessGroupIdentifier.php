@@ -179,10 +179,14 @@ class BusinessGroupIdentifier implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function getIdTypeAllowableValues()
     {
-        return [
+        $baseVals = [
             self::ID_TYPE_GROUP_ID,
             self::ID_TYPE_GROUP_TAG,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -216,7 +220,10 @@ class BusinessGroupIdentifier implements ModelInterface, ArrayAccess, \JsonSeria
             $invalidProperties[] = "'id_type' can't be null";
         }
         $allowedValues = $this->getIdTypeAllowableValues();
-        if (!is_null($this->container['id_type']) && !in_array($this->container['id_type'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['id_type']) &&
+            !in_array(strtoupper($this->container['id_type']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'id_type', must be one of '%s'",
                 $this->container['id_type'],
@@ -262,7 +269,7 @@ class BusinessGroupIdentifier implements ModelInterface, ArrayAccess, \JsonSeria
     public function setIdType($id_type)
     {
         $allowedValues = $this->getIdTypeAllowableValues();
-        if (!in_array($id_type, $allowedValues, true)) {
+        if (!in_array(strtoupper($id_type), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'id_type', must be one of '%s'",

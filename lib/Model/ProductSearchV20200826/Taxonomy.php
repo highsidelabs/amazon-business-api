@@ -184,10 +184,14 @@ class Taxonomy implements ModelInterface, ArrayAccess, \JsonSerializable, \Itera
      */
     public function getTypeAllowableValues()
     {
-        return [
+        $baseVals = [
             self::TYPE_UNSPSC,
             self::TYPE_ECLASS,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -228,7 +232,10 @@ class Taxonomy implements ModelInterface, ArrayAccess, \JsonSerializable, \Itera
             $invalidProperties[] = "'type' can't be null";
         }
         $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['type']) &&
+            !in_array(strtoupper($this->container['type']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'type', must be one of '%s'",
                 $this->container['type'],
@@ -317,7 +324,7 @@ class Taxonomy implements ModelInterface, ArrayAccess, \JsonSerializable, \Itera
     public function setType($type)
     {
         $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
+        if (!in_array(strtoupper($type), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'type', must be one of '%s'",

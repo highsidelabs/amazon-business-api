@@ -185,9 +185,13 @@ class ReportDocument implements ModelInterface, ArrayAccess, \JsonSerializable, 
      */
     public function getCompressionAlgorithmAllowableValues()
     {
-        return [
+        $baseVals = [
             self::COMPRESSION_ALGORITHM_GZIP,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -225,7 +229,10 @@ class ReportDocument implements ModelInterface, ArrayAccess, \JsonSerializable, 
             $invalidProperties[] = "'url' can't be null";
         }
         $allowedValues = $this->getCompressionAlgorithmAllowableValues();
-        if (!is_null($this->container['compression_algorithm']) && !in_array($this->container['compression_algorithm'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['compression_algorithm']) &&
+            !in_array(strtoupper($this->container['compression_algorithm']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'compression_algorithm', must be one of '%s'",
                 $this->container['compression_algorithm'],
@@ -336,7 +343,7 @@ class ReportDocument implements ModelInterface, ArrayAccess, \JsonSerializable, 
     public function setCompressionAlgorithm($compression_algorithm)
     {
         $allowedValues = $this->getCompressionAlgorithmAllowableValues();
-        if (!is_null($compression_algorithm) && !in_array($compression_algorithm, $allowedValues, true)) {
+        if (!is_null($compression_algorithm) &&!in_array(strtoupper($compression_algorithm), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'compression_algorithm', must be one of '%s'",

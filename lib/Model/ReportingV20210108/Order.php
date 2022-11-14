@@ -258,7 +258,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
      */
     public function getOrderStatusAllowableValues()
     {
-        return [
+        $baseVals = [
             self::ORDER_STATUS_PENDING_APPROVAL,
             self::ORDER_STATUS_PAYMENT_CONFIRMED,
             self::ORDER_STATUS_PENDING_FULFILLMENT,
@@ -266,6 +266,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             self::ORDER_STATUS_CANCELLED,
             self::ORDER_STATUS_CLOSED,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -326,7 +330,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
             $invalidProperties[] = "'order_status' can't be null";
         }
         $allowedValues = $this->getOrderStatusAllowableValues();
-        if (!is_null($this->container['order_status']) && !in_array($this->container['order_status'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['order_status']) &&
+            !in_array(strtoupper($this->container['order_status']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'order_status', must be one of '%s'",
                 $this->container['order_status'],
@@ -488,7 +495,7 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterator
     public function setOrderStatus($order_status)
     {
         $allowedValues = $this->getOrderStatusAllowableValues();
-        if (!in_array($order_status, $allowedValues, true)) {
+        if (!in_array(strtoupper($order_status), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'order_status', must be one of '%s'",

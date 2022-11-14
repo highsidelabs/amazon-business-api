@@ -224,13 +224,17 @@ class Report implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterato
      */
     public function getProcessingStatusAllowableValues()
     {
-        return [
+        $baseVals = [
             self::PROCESSING_STATUS_CANCELLED,
             self::PROCESSING_STATUS_DONE,
             self::PROCESSING_STATUS_FATAL,
             self::PROCESSING_STATUS_IN_PROGRESS,
             self::PROCESSING_STATUS_IN_QUEUE,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -281,7 +285,10 @@ class Report implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterato
             $invalidProperties[] = "'processing_status' can't be null";
         }
         $allowedValues = $this->getProcessingStatusAllowableValues();
-        if (!is_null($this->container['processing_status']) && !in_array($this->container['processing_status'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['processing_status']) &&
+            !in_array(strtoupper($this->container['processing_status']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'processing_status', must be one of '%s'",
                 $this->container['processing_status'],
@@ -484,7 +491,7 @@ class Report implements ModelInterface, ArrayAccess, \JsonSerializable, \Iterato
     public function setProcessingStatus($processing_status)
     {
         $allowedValues = $this->getProcessingStatusAllowableValues();
-        if (!in_array($processing_status, $allowedValues, true)) {
+        if (!in_array(strtoupper($processing_status), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'processing_status', must be one of '%s'",

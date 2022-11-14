@@ -223,9 +223,13 @@ class Shipment implements ModelInterface, ArrayAccess, \JsonSerializable, \Itera
      */
     public function getShipmentStatusAllowableValues()
     {
-        return [
+        $baseVals = [
             self::SHIPMENT_STATUS_SHIPPED,
         ];
+
+        // This is necessary because Amazon does not consistently capitalize their
+        // enum values, so we do case-insensitive enum value validation in ObjectSerializer
+        return array_map(function ($val) { return strtoupper($val); }, $baseVals);
     }
     
     /**
@@ -271,7 +275,10 @@ class Shipment implements ModelInterface, ArrayAccess, \JsonSerializable, \Itera
             $invalidProperties[] = "'shipment_status' can't be null";
         }
         $allowedValues = $this->getShipmentStatusAllowableValues();
-        if (!is_null($this->container['shipment_status']) && !in_array($this->container['shipment_status'], $allowedValues, true)) {
+        if (
+            !is_null($this->container['shipment_status']) &&
+            !in_array(strtoupper($this->container['shipment_status']), $allowedValues, true)
+        ) {
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'shipment_status', must be one of '%s'",
                 $this->container['shipment_status'],
@@ -364,7 +371,7 @@ class Shipment implements ModelInterface, ArrayAccess, \JsonSerializable, \Itera
     public function setShipmentStatus($shipment_status)
     {
         $allowedValues = $this->getShipmentStatusAllowableValues();
-        if (!in_array($shipment_status, $allowedValues, true)) {
+        if (!in_array(strtoupper($shipment_status), $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'shipment_status', must be one of '%s'",
