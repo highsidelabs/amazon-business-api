@@ -26,6 +26,7 @@
  */
 
 namespace AmazonBusinessApi\Model\UserManagementV20210830;
+
 use \AmazonBusinessApi\Model\ModelInterface;
 use \AmazonBusinessApi\ObjectSerializer;
 use \ArrayAccess;

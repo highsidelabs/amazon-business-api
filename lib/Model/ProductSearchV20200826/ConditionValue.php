@@ -26,6 +26,7 @@
  */
 
 namespace AmazonBusinessApi\Model\ProductSearchV20200826;
+
 use \AmazonBusinessApi\Model\ModelInterface;
 use \AmazonBusinessApi\ObjectSerializer;
 use \ArrayAccess;
