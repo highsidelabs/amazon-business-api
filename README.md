@@ -3,7 +3,7 @@ A PHP library for connecting to Amazon's [Business API](https://developer-docs.a
 
 [![Total Downloads](https://img.shields.io/packagist/dt/highsidelabs/amazon-business-api.svg?style=flat-square)](https://packagist.org/packages/highsidelabs/amazon-business-api)
 [![Latest Stable Version](https://img.shields.io/packagist/v/highsidelabs/amazon-business-api.svg?style=flat-square)](https://packagist.org/packages/highsidelabs/amazon-business-api)
-[![License](https://img.shields.io/packagist/l/highsidelabs/amazon-business-api.svg?style=flat-square)](https://packagist.org/packages/highsidelabs/amazon-business-api)
+[![License](https://img.shields.io/github/license/highsidelabs/amazon-business-api.svg?style=flat-square)](https://packagist.org/packages/highsidelabs/amazon-business-api)
 
 | | |
 | ------ | ------ |
