@@ -1,6 +1,6 @@
 {
     "name": "highsidelabs/amazon-business-api",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "PHP client for Amazon's Business API",
     "keywords": [
         "api",
