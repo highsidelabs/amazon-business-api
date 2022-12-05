@@ -443,7 +443,7 @@ class Configuration
     {
         return [
             [
-                'url' => 'https://na.business-api.amazon.com',
+                'url' => 'https://api.business.amazon.com',
                 'description' => 'No description provided',
             ]
         ];

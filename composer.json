@@ -8,7 +8,6 @@
         "amazon",
         "ecommerce",
         "ab-api",
-        "php",
         "sdk",
         "rest",
         "api"
@@ -34,5 +33,8 @@
     },
     "autoload": {
         "psr-4": { "AmazonBusinessApi\\" : "lib/" }
+    },
+    "scripts": {
+        "lint": "vendor/bin/php-cs-fixer fix"
     }
 }
