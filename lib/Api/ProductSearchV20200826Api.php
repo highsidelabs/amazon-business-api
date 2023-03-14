@@ -903,10 +903,6 @@ class ProductSearchV20200826Api
                 'Missing the required parameter $locale when calling productsRequest'
             );
         }
-        if (!preg_match("/^[-_]+$/", $locale)) {
-            throw new \InvalidArgumentException("invalid value for \"locale\" when calling ProductSearchV20200826Api.productsRequest, must conform to the pattern /^[-_]+$/.");
-        }
-
         // verify the required parameter 'x_amz_user_email' is set
         if ($x_amz_user_email === null || (is_array($x_amz_user_email) && count($x_amz_user_email) === 0)) {
             throw new \InvalidArgumentException(
@@ -1425,10 +1421,6 @@ class ProductSearchV20200826Api
                 'Missing the required parameter $locale when calling searchOffersRequest'
             );
         }
-        if (!preg_match("/^[-_]+$/", $locale)) {
-            throw new \InvalidArgumentException("invalid value for \"locale\" when calling ProductSearchV20200826Api.searchOffersRequest, must conform to the pattern /^[-_]+$/.");
-        }
-
         // verify the required parameter 'x_amz_user_email' is set
         if ($x_amz_user_email === null || (is_array($x_amz_user_email) && count($x_amz_user_email) === 0)) {
             throw new \InvalidArgumentException(
@@ -2014,10 +2006,6 @@ class ProductSearchV20200826Api
                 'Missing the required parameter $locale when calling searchProductsRequest'
             );
         }
-        if (!preg_match("/^[-_]+$/", $locale)) {
-            throw new \InvalidArgumentException("invalid value for \"locale\" when calling ProductSearchV20200826Api.searchProductsRequest, must conform to the pattern /^[-_]+$/.");
-        }
-
         // verify the required parameter 'x_amz_user_email' is set
         if ($x_amz_user_email === null || (is_array($x_amz_user_email) && count($x_amz_user_email) === 0)) {
             throw new \InvalidArgumentException(

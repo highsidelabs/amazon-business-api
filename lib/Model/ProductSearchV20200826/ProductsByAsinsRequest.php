@@ -238,10 +238,6 @@ class ProductsByAsinsRequest extends BaseModel implements ModelInterface, ArrayA
         if ($this->container['locale'] === null) {
             $invalidProperties[] = "'locale' can't be null";
         }
-        if (!preg_match("/^[-_]+$/", $this->container['locale'])) {
-            $invalidProperties[] = "invalid value for 'locale', must be conform to the pattern /^[-_]+$/.";
-        }
-
         return $invalidProperties;
     }
 
@@ -321,11 +317,6 @@ class ProductsByAsinsRequest extends BaseModel implements ModelInterface, ArrayA
      */
     public function setLocale($locale)
     {
-
-        if ((!preg_match("/^[-_]+$/", $locale))) {
-            throw new \InvalidArgumentException("invalid value for $locale when calling ProductsByAsinsRequest., must conform to the pattern /^[-_]+$/.");
-        }
-
         $this->container['locale'] = $locale;
 
         return $this;
