@@ -14,6 +14,8 @@ class AuthorizationSigner implements AuthorizationSignerContract
     private const SERVICE_NAME = 'execute-api';
     private const TERMINATION_STR = 'aws4_request';
 
+    private $requestTime;
+
     /**
      * @see \AmazonBusinessApi\Endpoint
      * @var array

@@ -16,6 +16,7 @@ class Authentication implements RequestSignerContract
     private $lwaRefreshToken;
     private $lwaAuthUrl = null;
     private $endpoint;
+    private $tokensApi;
 
     private $onUpdateCreds;
     private $roleArn;
@@ -346,6 +347,6 @@ class Authentication implements RequestSignerContract
      */
     public function formattedRequestTime(?bool $withTime = true): ?string
     {
-        return $this->requestSigner->formattedRequestTime($withTime);
+        return $this->authorizationSigner->formattedRequestTime($withTime);
     }
 }
