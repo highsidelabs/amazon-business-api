@@ -10,9 +10,9 @@ A PHP library for connecting to Amazon's [Business API](https://developer-docs.a
 | [![Highside Labs Logo](https://highsidelabs.co/static/favicons/favicon.png)](https://highsidelabs.co) | **This package is developed and maintained as part of [Highside Labs](https://highsidelabs.co). If you need support integrating with Amazon's (or any other e-commerce platform's) APIs, we're happy to help! Shoot us an email at [hi@highsidelabs.co](mailto:hi@highsidelabs.co). We'd love to hear from you :)** |
 | | We are the team behind the [Selling Partner API library](https://github.com/jlevers/selling-partner-api). If you need to access the Selling Partner API too, our library for that API has a nearly identical interface to this one, and you should be able to get onboarded very quickly.
 
-If you've found this library useful, please consider [becoming a Sponsor](https://github.com/sponsors/jlevers), or making a one-time donation via the button below. We appreciate any and all support you can provide!
+If you've found this library useful, please consider [becoming a Sponsor](https://github.com/sponsors/highsidelabs), or making a donation via the button below. We appreciate any and all support you can provide!
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?business=EL4PRLAEMGXNQ&currency_code=USD)
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=FG8Q6MNB4HJCC)
 
 ---
 
@@ -43,6 +43,8 @@ This README is divided into several sections:
 * [Custom request signing](#custom-request-signer)
 
 ## Getting Started
+
+We wrote a blog post with more detailed instructions on connecting to the Amazon Business API [here](https://www.highsidelabs.co/blog/amazon-business-api). Check it out if you need more help getting set up.
 
 ### Prerequisites
 
