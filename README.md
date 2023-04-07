@@ -173,11 +173,11 @@ use AmazonBusinessApi\Model\ProductSearchV20200826 as ProductSearch;
 
 It also means that if a new version of an existing API is introduced, the library can be updated to include that new version without introducing breaking changes.
 
-* [Invoice Download API (v2021-09-30)](https://github.com/highside-labs/amazon-business-api/blob/main/docs/Api/InvoiceDownloadV20210930Api.md)
-* [Product Search API (v2021-08-26)](https://github.com/highside-labs/amazon-business-api/blob/main/docs/Api/ProductSearchV20210826Api.md)
-* [Reconciliation API (v2021-01-08)](https://github.com/highside-labs/amazon-business-api/blob/main/docs/Api/ReconciliationV20210108Api.md)
-* [Reporting API (v2021-01-08)](https://github.com/highside-labs/amazon-business-api/blob/main/docs/Api/ReportingV20210108API.md)
-* [User Management API (v2021-08-30)](https://github.com/highside-labs/amazon-business-api/blob/main/docs/Api/UserManagementV20210830.md)
+* [Invoice Download API (v2021-09-30)](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Api/InvoiceDownloadV20210930Api.md)
+* [Product Search API (v2021-08-26)](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Api/ProductSearchV20210826Api.md)
+* [Reconciliation API (v2021-01-08)](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Api/ReconciliationV20210108Api.md)
+* [Reporting API (v2021-01-08)](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Api/ReportingV20210108API.md)
+* [User Management API (v2021-08-30)](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Api/UserManagementV20210830.md)
 
 
 ## Working with model classes
