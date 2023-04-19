@@ -1,20 +1,36 @@
-# Amazon Business API for PHP
+<p align="center">
+    <a href="https://highsidelabs.co" target="_blank">
+        <img src="https://github.com/highsidelabs/.github/blob/main/images/logo.png?raw=true" width="125">
+    </a>
+</p>
+
+<p align="center">
+    <a href="https://packagist.org/packages/highsidelabs/amazon-business-api"><img alt="Total downloads" src="https://img.shields.io/packagist/dt/highsidelabs/amazon-business-api.svg?style=flat-square"></a>
+    <a href="https://packagist.org/packages/highsidelabs/amazon-business-api"><img alt="Latest stable version" src="https://img.shields.io/packagist/v/highsidelabs/amazon-business-api.svg?style=flat-square"></a>
+    <a href="https://packagist.org/packages/highsidelabs/amazon-business-api"><img alt="License" src="https://img.shields.io/packagist/l/highsidelabs/amazon-business-api.svg?style=flat-square"></a>
+</p>
+
+## Amazon Business API for PHP
 A PHP library for connecting to Amazon's [Business API](https://developer-docs.amazon.com/amazon-business/).
 
-[![Total Downloads](https://img.shields.io/packagist/dt/highsidelabs/amazon-business-api.svg?style=flat-square)](https://packagist.org/packages/highsidelabs/amazon-business-api)
-[![Latest Stable Version](https://img.shields.io/packagist/v/highsidelabs/amazon-business-api.svg?style=flat-square)](https://packagist.org/packages/highsidelabs/amazon-business-api)
-[![License](https://img.shields.io/github/license/highsidelabs/amazon-business-api.svg?style=flat-square)](https://packagist.org/packages/highsidelabs/amazon-business-api)
+### Related packages
 
-| | |
-| ------ | ------ |
-| [![Highside Labs Logo](https://highsidelabs.co/static/favicons/favicon.png)](https://highsidelabs.co) | **This package is developed and maintained as part of [Highside Labs](https://highsidelabs.co). If you need support integrating with Amazon's (or any other e-commerce platform's) APIs, we're happy to help! Shoot us an email at [hi@highsidelabs.co](mailto:hi@highsidelabs.co). We'd love to hear from you :)** |
-| | We are the team behind the [Selling Partner API library](https://github.com/jlevers/selling-partner-api). If you need to access the Selling Partner API too, our library for that API has a nearly identical interface to this one, and you should be able to get onboarded very quickly.
-
-If you've found this library useful, please consider [becoming a Sponsor](https://github.com/sponsors/highsidelabs), or making a donation via the button below. We appreciate any and all support you can provide!
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=FG8Q6MNB4HJCC)
+* [`jlevers/selling-partner-api`](https://github.com/jlevers/selling-partner-api): A PHP library for Amazon's [Selling Partner API](https://developer-docs.amazon.com/sp-api/docs), with a near-identical interface to this package. Our most popular package.
+* [`highsidelabs/laravel-spapi`](https://github.com/highsidelabs/laravel-spapi): An Laravel wrapper for the package above, making SP API integration in Laravel projects quick and easy.
 
 ---
+
+**This package is developed and maintained by [Highside Labs](https://highsidelabs.co). If you need support integrating with Amazon's (or any other e-commerce platform's) APIs, we're happy to help! Shoot us an email at [hi@highsidelabs.co](mailto:hi@highsidelabs.co). We'd love to hear from you :)**
+
+If you've found any of our packages useful, please consider [becoming a Sponsor](https://github.com/sponsors/highsidelabs), or making a donation via the button below. We appreciate any and all support you can provide!
+
+<p align="center">
+    <a href="https://www.paypal.com/donate/?hosted_button_id=FG8Q6MNB4HJCC"><img alt="Donate to Highside Labs" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
+</p>
+
+---
+
+_(There is a more in-depth guide to using this package on our blog, [here](https://www.highsidelabs.co/blog/amazon-business-api).)_
 
 ## Features
 
