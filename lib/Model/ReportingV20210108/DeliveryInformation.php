@@ -111,8 +111,8 @@ class DeliveryInformation extends BaseModel implements ModelInterface, ArrayAcce
 
 
     const DELIVERY_STATUS_DELIVERED = 'DELIVERED';
-    const DELIVERY_STATUS_NOT_DELIVERED = 'NOT DELIVERED';
-    const DELIVERY_STATUS_NOT_AVAILABLE = 'NOT AVAILABLE';
+    const DELIVERY_STATUS_NOT_DELIVERED = 'NOT_DELIVERED';
+    const DELIVERY_STATUS_NOT_AVAILABLE = 'NOT_AVAILABLE';
     
     
 
