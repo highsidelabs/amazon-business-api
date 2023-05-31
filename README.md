@@ -16,8 +16,8 @@ A PHP library for connecting to Amazon's [Business API](https://developer-docs.a
 ### Related packages
 
 * [`jlevers/selling-partner-api`](https://github.com/jlevers/selling-partner-api): A PHP library for Amazon's [Selling Partner API](https://developer-docs.amazon.com/sp-api/docs), with a near-identical interface to this package. Our most popular package.
-* [`highsidelabs/laravel-spapi`](https://github.com/highsidelabs/laravel-spapi): An Laravel wrapper for the package above, making SP API integration in Laravel projects quick and easy.
-* [`highsidelabs/walmart-api`](https://github.com/highsidelabs/walmart-api-php): A PHP library for Walmart's seller and supplier APIs, including the Marketplace, Drop Ship Vendor, Content Provider, and Warehouse Supplier APIs.
+* [`highsidelabs/laravel-spapi`](https://github.com/highsidelabs/laravel-spapi): A [Laravel](https://laravel.com) wrapper for the package above, making SP API integration in Laravel projects quick and easy.
+* [`highsidelabs/walmart-api`](https://github.com/highsidelabs/walmart-api-php): A PHP library for [Walmart's seller and supplier APIs](https://developer.walmart.com), including the Marketplace, Drop Ship Vendor, Content Provider, and Warehouse Supplier APIs.
 
 ---
 
