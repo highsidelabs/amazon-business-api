@@ -6,4 +6,4 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **report_id** | **string** | The identifier for the report. This identifier is unique only in combination with a business entity. |
 
-[[InvoiceDownloadV20210930 Models]](../) [[API list]](../../Api) [[README]](../../../README.md)
+[[DocumentV20210930 Models]](../) [[API list]](../../Api) [[README]](../../../README.md)

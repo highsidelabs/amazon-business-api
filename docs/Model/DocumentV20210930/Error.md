@@ -8,4 +8,4 @@ Name | Type | Description | Notes
 **message** | **string** | A message that describes the error condition in a human-readable form. |
 **details** | **string** | Additional details that can help the caller understand or fix the issue. | [optional]
 
-[[InvoiceDownloadV20210930 Models]](../) [[API list]](../../Api) [[README]](../../../README.md)
+[[DocumentV20210930 Models]](../) [[API list]](../../Api) [[README]](../../../README.md)

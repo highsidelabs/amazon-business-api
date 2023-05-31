@@ -15,4 +15,4 @@ Name | Type | Description | Notes
 **processing_end_time** | **string** | The date and time when the report processing completed, in ISO 8601 date time format. | [optional]
 **report_document_id** | **string** | The identifier for the report document. Pass this into the getReportDocument operation to get the information you will need to retrieve the report document's contents. | [optional]
 
-[[InvoiceDownloadV20210930 Models]](../) [[API list]](../../Api) [[README]](../../../README.md)
+[[DocumentV20210930 Models]](../) [[API list]](../../Api) [[README]](../../../README.md)

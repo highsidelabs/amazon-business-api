@@ -1,12 +1,12 @@
-# AmazonBusinessApi\InvoiceDownloadV20210930Api
+# AmazonBusinessApi\DocumentV20210930Api
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancelReport()**](InvoiceDownloadV20210930Api.md#cancelReport) | **DELETE** /reports/2021-09-30/reports/{reportId} | 
-[**createReport()**](InvoiceDownloadV20210930Api.md#createReport) | **POST** /reports/2021-09-30/reports | 
-[**getReport()**](InvoiceDownloadV20210930Api.md#getReport) | **GET** /reports/2021-09-30/reports/{reportId} | 
-[**getReportDocument()**](InvoiceDownloadV20210930Api.md#getReportDocument) | **GET** /reports/2021-09-30/documents/{reportDocumentId} | 
-[**getReports()**](InvoiceDownloadV20210930Api.md#getReports) | **GET** /reports/2021-09-30/reports | 
+[**cancelReport()**](DocumentV20210930Api.md#cancelReport) | **DELETE** /reports/2021-09-30/reports/{reportId} | 
+[**createReport()**](DocumentV20210930Api.md#createReport) | **POST** /reports/2021-09-30/reports | 
+[**getReport()**](DocumentV20210930Api.md#getReport) | **GET** /reports/2021-09-30/reports/{reportId} | 
+[**getReportDocument()**](DocumentV20210930Api.md#getReportDocument) | **GET** /reports/2021-09-30/documents/{reportDocumentId} | 
+[**getReports()**](DocumentV20210930Api.md#getReports) | **GET** /reports/2021-09-30/reports | 
 
 
 ## `cancelReport()`
@@ -35,13 +35,13 @@ $config = new AmazonBusinessApi\Configuration([
     "endpoint" => AmazonBusinessApi\Endpoint::NA  // or another endpoint from lib/Endpoints.php
 ]);
 
-$apiInstance = new AmazonBusinessApi\Api\InvoiceDownloadV20210930Api($config);
+$apiInstance = new AmazonBusinessApi\Api\DocumentV20210930Api($config);
 $report_id = 'report_id_example'; // string | The identifier for the report. This identifier is unique only in combination with a seller ID.
 
 try {
     $apiInstance->cancelReport($report_id);
 } catch (Exception $e) {
-    echo 'Exception when calling InvoiceDownloadV20210930Api->cancelReport: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DocumentV20210930Api->cancelReport: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -61,13 +61,13 @@ void (empty response body)
 - **Accept**: `application/json`
 
 [[Top]](#) [[API list]](../)
-[[InvoiceDownloadV20210930 Model list]](../Model/InvoiceDownloadV20210930)
+[[DocumentV20210930 Model list]](../Model/DocumentV20210930)
 [[README]](../../README.md)
 
 ## `createReport()`
 
 ```php
-createReport($body): \AmazonBusinessApi\Model\InvoiceDownloadV20210930\CreateReportResponse
+createReport($body): \AmazonBusinessApi\Model\DocumentV20210930\CreateReportResponse
 ```
 
 
@@ -90,14 +90,14 @@ $config = new AmazonBusinessApi\Configuration([
     "endpoint" => AmazonBusinessApi\Endpoint::NA  // or another endpoint from lib/Endpoints.php
 ]);
 
-$apiInstance = new AmazonBusinessApi\Api\InvoiceDownloadV20210930Api($config);
-$body = new \AmazonBusinessApi\Model\InvoiceDownloadV20210930\CreateReportSpecification(); // \AmazonBusinessApi\Model\InvoiceDownloadV20210930\CreateReportSpecification
+$apiInstance = new AmazonBusinessApi\Api\DocumentV20210930Api($config);
+$body = new \AmazonBusinessApi\Model\DocumentV20210930\CreateReportSpecification(); // \AmazonBusinessApi\Model\DocumentV20210930\CreateReportSpecification
 
 try {
     $result = $apiInstance->createReport($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling InvoiceDownloadV20210930Api->createReport: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DocumentV20210930Api->createReport: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -105,11 +105,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**\AmazonBusinessApi\Model\InvoiceDownloadV20210930\CreateReportSpecification**](../Model/InvoiceDownloadV20210930/CreateReportSpecification.md)|  |
+ **body** | [**\AmazonBusinessApi\Model\DocumentV20210930\CreateReportSpecification**](../Model/DocumentV20210930/CreateReportSpecification.md)|  |
 
 ### Return type
 
-[**\AmazonBusinessApi\Model\InvoiceDownloadV20210930\CreateReportResponse**](../Model/InvoiceDownloadV20210930/CreateReportResponse.md)
+[**\AmazonBusinessApi\Model\DocumentV20210930\CreateReportResponse**](../Model/DocumentV20210930/CreateReportResponse.md)
 
 ### HTTP request headers
 
@@ -117,13 +117,13 @@ Name | Type | Description  | Notes
 - **Accept**: `application/json`
 
 [[Top]](#) [[API list]](../)
-[[InvoiceDownloadV20210930 Model list]](../Model/InvoiceDownloadV20210930)
+[[DocumentV20210930 Model list]](../Model/DocumentV20210930)
 [[README]](../../README.md)
 
 ## `getReport()`
 
 ```php
-getReport($report_id): \AmazonBusinessApi\Model\InvoiceDownloadV20210930\Report
+getReport($report_id): \AmazonBusinessApi\Model\DocumentV20210930\Report
 ```
 
 
@@ -146,14 +146,14 @@ $config = new AmazonBusinessApi\Configuration([
     "endpoint" => AmazonBusinessApi\Endpoint::NA  // or another endpoint from lib/Endpoints.php
 ]);
 
-$apiInstance = new AmazonBusinessApi\Api\InvoiceDownloadV20210930Api($config);
+$apiInstance = new AmazonBusinessApi\Api\DocumentV20210930Api($config);
 $report_id = 'report_id_example'; // string | The identifier for the report. This identifier is unique only in combination with a seller ID.
 
 try {
     $result = $apiInstance->getReport($report_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling InvoiceDownloadV20210930Api->getReport: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DocumentV20210930Api->getReport: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\AmazonBusinessApi\Model\InvoiceDownloadV20210930\Report**](../Model/InvoiceDownloadV20210930/Report.md)
+[**\AmazonBusinessApi\Model\DocumentV20210930\Report**](../Model/DocumentV20210930/Report.md)
 
 ### HTTP request headers
 
@@ -173,13 +173,13 @@ Name | Type | Description  | Notes
 - **Accept**: `application/json`
 
 [[Top]](#) [[API list]](../)
-[[InvoiceDownloadV20210930 Model list]](../Model/InvoiceDownloadV20210930)
+[[DocumentV20210930 Model list]](../Model/DocumentV20210930)
 [[README]](../../README.md)
 
 ## `getReportDocument()`
 
 ```php
-getReportDocument($report_document_id): \AmazonBusinessApi\Model\InvoiceDownloadV20210930\ReportDocument
+getReportDocument($report_document_id): \AmazonBusinessApi\Model\DocumentV20210930\ReportDocument
 ```
 
 
@@ -202,14 +202,14 @@ $config = new AmazonBusinessApi\Configuration([
     "endpoint" => AmazonBusinessApi\Endpoint::NA  // or another endpoint from lib/Endpoints.php
 ]);
 
-$apiInstance = new AmazonBusinessApi\Api\InvoiceDownloadV20210930Api($config);
+$apiInstance = new AmazonBusinessApi\Api\DocumentV20210930Api($config);
 $report_document_id = 'report_document_id_example'; // string | The identifier for the report document.
 
 try {
     $result = $apiInstance->getReportDocument($report_document_id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling InvoiceDownloadV20210930Api->getReportDocument: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DocumentV20210930Api->getReportDocument: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\AmazonBusinessApi\Model\InvoiceDownloadV20210930\ReportDocument**](../Model/InvoiceDownloadV20210930/ReportDocument.md)
+[**\AmazonBusinessApi\Model\DocumentV20210930\ReportDocument**](../Model/DocumentV20210930/ReportDocument.md)
 
 ### HTTP request headers
 
@@ -229,13 +229,13 @@ Name | Type | Description  | Notes
 - **Accept**: `application/json`
 
 [[Top]](#) [[API list]](../)
-[[InvoiceDownloadV20210930 Model list]](../Model/InvoiceDownloadV20210930)
+[[DocumentV20210930 Model list]](../Model/DocumentV20210930)
 [[README]](../../README.md)
 
 ## `getReports()`
 
 ```php
-getReports($report_types, $processing_statuses, $marketplace_ids, $page_size, $created_since, $created_until, $next_token): \AmazonBusinessApi\Model\InvoiceDownloadV20210930\GetReportsResponse
+getReports($report_types, $processing_statuses, $marketplace_ids, $page_size, $created_since, $created_until, $next_token): \AmazonBusinessApi\Model\DocumentV20210930\GetReportsResponse
 ```
 
 
@@ -258,7 +258,7 @@ $config = new AmazonBusinessApi\Configuration([
     "endpoint" => AmazonBusinessApi\Endpoint::NA  // or another endpoint from lib/Endpoints.php
 ]);
 
-$apiInstance = new AmazonBusinessApi\Api\InvoiceDownloadV20210930Api($config);
+$apiInstance = new AmazonBusinessApi\Api\DocumentV20210930Api($config);
 $report_types = array('report_types_example'); // string[] | A list of report types used to filter reports. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required.
 $processing_statuses = array('processing_statuses_example'); // string[] | A list of processing statuses used to filter reports.
 $marketplace_ids = array('marketplace_ids_example'); // string[] | A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify.
@@ -271,7 +271,7 @@ try {
     $result = $apiInstance->getReports($report_types, $processing_statuses, $marketplace_ids, $page_size, $created_since, $created_until, $next_token);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling InvoiceDownloadV20210930Api->getReports: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DocumentV20210930Api->getReports: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -279,9 +279,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **report_types** | [**string[]**](../Model/InvoiceDownloadV20210930/string.md)| A list of report types used to filter reports. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required. | [optional]
- **processing_statuses** | [**string[]**](../Model/InvoiceDownloadV20210930/string.md)| A list of processing statuses used to filter reports. | [optional]
- **marketplace_ids** | [**string[]**](../Model/InvoiceDownloadV20210930/string.md)| A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify. | [optional]
+ **report_types** | [**string[]**](../Model/DocumentV20210930/string.md)| A list of report types used to filter reports. When reportTypes is provided, the other filter parameters (processingStatuses, marketplaceIds, createdSince, createdUntil) and pageSize may also be provided. Either reportTypes or nextToken is required. | [optional]
+ **processing_statuses** | [**string[]**](../Model/DocumentV20210930/string.md)| A list of processing statuses used to filter reports. | [optional]
+ **marketplace_ids** | [**string[]**](../Model/DocumentV20210930/string.md)| A list of marketplace identifiers used to filter reports. The reports returned will match at least one of the marketplaces that you specify. | [optional]
  **page_size** | **int**| The maximum number of reports to return in a single call. | [optional] [default to 10]
  **created_since** | **string**| The earliest report creation date and time for reports to include in the response, in ISO 8601 date time format. The default is 90 days ago. Reports are retained for a maximum of 90 days. | [optional]
  **created_until** | **string**| The latest report creation date and time for reports to include in the response, in ISO 8601 date time format. The default is now. | [optional]
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\AmazonBusinessApi\Model\InvoiceDownloadV20210930\GetReportsResponse**](../Model/InvoiceDownloadV20210930/GetReportsResponse.md)
+[**\AmazonBusinessApi\Model\DocumentV20210930\GetReportsResponse**](../Model/DocumentV20210930/GetReportsResponse.md)
 
 ### HTTP request headers
 
@@ -297,5 +297,5 @@ Name | Type | Description  | Notes
 - **Accept**: `application/json`
 
 [[Top]](#) [[API list]](../)
-[[InvoiceDownloadV20210930 Model list]](../Model/InvoiceDownloadV20210930)
+[[DocumentV20210930 Model list]](../Model/DocumentV20210930)
 [[README]](../../README.md)
