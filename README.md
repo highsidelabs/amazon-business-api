@@ -200,7 +200,7 @@ It also means that if a new version of an existing API is introduced, the librar
 
 ## Working with model classes
 
-Most operations have one or more models associated with it. These models are classes that contain the data needed to make a certain kind of request to the API, or contain the data returned by a given request type. All of the models share the same general interface: you can either specify all the model's attributes during initialization, or set each attribute after the fact. Here's an example using the User Management API's `AccountHolder` model ([docs](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Model/UserManagementV20210830Api/AccountHolder.md), ([source](https://github.com/highsidelabs/amazon-business-api/blob/main/lib/Model/UserManagementV20210830Api/AccountHolder.php)).
+Most operations have one or more models associated with it. These models are classes that contain the data needed to make a certain kind of request to the API, or contain the data returned by a given request type. All of the models share the same general interface: you can either specify all the model's attributes during initialization, or set each attribute after the fact. Here's an example using the User Management API's `AccountHolder` model ([docs](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Model/UserManagementV20210830Api/AccountHolder.md)), ([source](https://github.com/highsidelabs/amazon-business-api/blob/main/lib/Model/UserManagementV20210830Api/AccountHolder.php)).
 
 The `AccountHolder` model has three attributes: `email`, `given_name`, and `family_name`. (If you're wondering how to figure out which attributes a model has on your own, check out the `docs` link above.) To create an instance of the `AccountHolder` model with all those attributes set:
 
@@ -242,6 +242,26 @@ $requestBody->accountHolder;        // -> [AccountHolder instance]
 $requestBody->requestBody->email;  // -> 'janedoe@acmecorp.com'
 ```
 
+If a model attribute is supposed to be an array, its type signature will be something like `ModelClass[]` (note the trailing `[]`). For instance, the `OrderingV1Api`'s [`placeOrder`](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Api/OrderingV1Api.md#placeorder) method takes a model named [`PlaceOrderRequest`](https://github.com/highsidelabs/amazon-business-api/blob/main/docs/Model/OrderingV1/PlaceOrderRequest.md) with an attribute called `line_items`. The type for `line_items` is `RequestLineItem[]`, and the attribute should be set like so:
+
+```php
+use AmazonBusinessApi\Model\OrderingV1;
+
+$placeOrderRequest = new OrderingV1\PlaceOrderRequest([
+    // ...
+    'line_items' => [
+        new OrderingV1\RequestLineItem([
+            'quantity' => 1,
+            // ...
+        ]),
+        new OrderingV1\RequestLineItem([
+            'quantity' => 2,
+            // ...
+        ]),
+    ],
+    // ...
+]);
+```
 
 ## Response headers
 Amazon includes some useful headers with each SP API response. If you need those for any reason, you can get an associative array of response headers by calling `getHeaders()` on the response object. For instance:
