@@ -290,12 +290,12 @@ You may need to do custom operations while signing the API request. You can crea
 
 ```php
 // CustomAuthorizationSigner.php
-use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
 use AmazonBusinessApi\Contract\AuthorizationSignerContract;
 
 class CustomAuthorizationSigner implements AuthorizationSignerContract
 {
-    public function sign(Request $request, Credentials $credentials): Request
+    public function sign(RequestInterface $request, Credentials $credentials): RequestInterface
     {
         // Calculate request signature and request date.
         
@@ -339,12 +339,12 @@ You may also need to customize the entire request signing process – for instan
 
 ```php
 // RemoteRequestSigner.php
-use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
 use AmazonBusinessApi\Contract\RequestSignerContract;
 
 class RemoteRequestSigner implements RequestSignerContract
 {
-    public function signRequest(Request $request): Request {
+    public function signRequest(RequestInterface $request): RequestInterface {
         // Sign request by sending HTTP call
         // to external/separate service instance.
         
