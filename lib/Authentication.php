@@ -4,9 +4,10 @@ namespace AmazonBusinessApi;
 
 use AmazonBusinessApi\Contract\AuthorizationSignerContract;
 use AmazonBusinessApi\Contract\RequestSignerContract;
-use Aws\Sts\StsClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7;
+use Psr\Http\Message\RequestInterface;
 use RuntimeException;
 
 class Authentication implements RequestSignerContract
@@ -16,7 +17,6 @@ class Authentication implements RequestSignerContract
     private $lwaRefreshToken;
     private $lwaAuthUrl = null;
     private $endpoint;
-    private $tokensApi;
 
     private $onUpdateCreds;
     private $roleArn;
@@ -65,8 +65,6 @@ class Authentication implements RequestSignerContract
         if ($accessToken !== null && $accessTokenExpiration !== null) {
             $this->populateCredentials($this->awsAccessKeyId, $this->awsSecretAccessKey, $accessToken, $accessTokenExpiration);
         }
-        
-        $this->tokensApi = $configurationOptions['tokensApi'] ?? null;
 
         $this->authorizationSigner = $configurationOptions['authorizationSigner'] ?? new AuthorizationSigner($this->endpoint);
     }
@@ -118,16 +116,20 @@ class Authentication implements RequestSignerContract
     /**
      * Signs the given request using Amazon Signature V4.
      *
-     * @param \GuzzleHttp\Psr7\Request $request The request to sign
-     * @return \GuzzleHttp\Psr7\Request The signed request
+     * @param \Psr\Http\Message\RequestInterface $request The request to sign
+     * @return \Psr\Http\Message\RequestInterface The signed request
      */
-    public function signRequest(Request $request): Request
+    public function signRequest(RequestInterface $request): RequestInterface
     {
         // Check if the relevant AWS creds haven't been fetched or are expiring soon
         $relevantCreds = $this->getAwsCredentials();
 
         $accessToken = $relevantCreds->getSecurityToken();
-        if ($this->roleArn !== null) {
+        $isStsRequest = stripos($request->getUri()->getHost(), 'sts.') !== false;
+
+        // Don't try to get role credentials if we're using this method to sign an STS request, because
+        // that will cause an infinite loop
+        if ($this->roleArn !== null && !$isStsRequest) {
             $relevantCreds = $this->getRoleCredentials();
         }
 
@@ -135,7 +137,7 @@ class Authentication implements RequestSignerContract
         $signedRequest = $this->authorizationSigner->sign($request, $relevantCreds)
             ->withHeader('x-amz-access-token', $accessToken);
 
-        if ($this->roleArn) {
+        if ($this->roleArn && !$isStsRequest) {
             $signedRequest = $signedRequest->withHeader("x-amz-security-token", $relevantCreds->getSecurityToken());
         }
 
@@ -162,28 +164,31 @@ class Authentication implements RequestSignerContract
      */
     public function getRoleCredentials(): Credentials
     {
-        $originalCreds = $this->getAwsCredentials();
         if ($this->needNewCredentials($this->roleCredentials)) {
-            $client = new StsClient([
-                'sts_regional_endpoints' => 'regional',
-                'region' => $this->endpoint['region'],
-                'version' => '2011-06-15',
-                'credentials' => [
-                    'key' => $originalCreds->getAccessKeyId(),
-                    'secret' => $originalCreds->getSecretKey(),
-                ],
-            ]);
             $assumeTime = time();
-            $assumed = $client->AssumeRole([
+            $client = new Client();
+            $query = Psr7\Query::build([
+                'Action' => 'AssumeRole',
                 'RoleArn' => $this->roleArn,
                 'RoleSessionName' => "spapi-assumerole-{$assumeTime}",
+                'Version' => '2011-06-15',
             ]);
-            $credentials = $assumed['Credentials'];
+            $request = new Request(
+                'POST',
+                "https://sts.{$this->endpoint['region']}.amazonaws.com?{$query}",
+                ['Accept' => 'application/json']
+            );
+            $signedRequest = $this->signRequest($request);
+
+            $assumed = $client->send($signedRequest);
+            $assumedJson = json_decode($assumed->getBody(), true);
+            $credentials = $assumedJson['AssumeRoleResponse']['AssumeRoleResult']['Credentials'];
+
             $this->roleCredentials = new Credentials(
                 $credentials['AccessKeyId'],
                 $credentials['SecretAccessKey'],
                 $credentials['SessionToken'],
-                $credentials['Expiration']->getTimestamp()
+                $credentials['Expiration'],
             );
         }
 

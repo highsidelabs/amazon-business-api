@@ -2,9 +2,9 @@
 
 namespace AmazonBusinessApi\Contract;
 
-use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
 
 interface RequestSignerContract
 {
-    public function signRequest(Request $request): Request;
+    public function signRequest(RequestInterface $request): RequestInterface;
 }

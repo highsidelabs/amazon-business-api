@@ -3,11 +3,11 @@
 namespace AmazonBusinessApi\Contract;
 
 use AmazonBusinessApi\Credentials;
-use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\RequestInterface;
 
 interface AuthorizationSignerContract
 {
-    public function sign(Request $request, Credentials $credentials): Request;
+    public function sign(RequestInterface $request, Credentials $credentials): RequestInterface;
 
     public function setRequestTime(?\DateTime $datetime = null): void;
 
